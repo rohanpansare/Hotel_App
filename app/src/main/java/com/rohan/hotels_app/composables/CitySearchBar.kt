@@ -43,7 +43,7 @@ fun CitySearchBar(onSearch: (String) -> Unit) {
                 onValueChange = {
                     query = it
                 },
-                label = { Text("Search for hotels in a US city") },
+                label = { Text("Search for hotels in a city") },
                 leadingIcon = { Icon(Icons.Filled.Search, contentDescription = "Search") },
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Search

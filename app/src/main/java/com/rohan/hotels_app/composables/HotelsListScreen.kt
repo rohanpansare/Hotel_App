@@ -2,6 +2,7 @@ package com.rohan.hotels_app.composables
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,10 +14,10 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.rohan.hotels_app.data.Hotel
-import com.rohan.hotels_app.network.RetrofitInstance
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -29,7 +30,8 @@ fun HotelsListScreen(navController: NavHostController, enteredCity: String) {
             sr = emptyList()
         )
     ) }
-    var isLoading by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    var isLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(enteredCity) {
         isLoading = true
@@ -55,12 +57,16 @@ fun HotelsListScreen(navController: NavHostController, enteredCity: String) {
                 if (isLoading) {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 } else {
+                    if (hotels.sr.isEmpty()) {
+                        Toast.makeText(context, "Hotels for $enteredCity not found", Toast.LENGTH_LONG).show()
+                    } else {
                     LazyColumn(
                         contentPadding = PaddingValues(vertical = 8.dp)
                     ) {
-                        items(hotels.sr) { hotel ->
-                            if(hotel.type == "HOTEL") {
-                                HotelItem(navController, hotel = hotel)
+                            items(hotels.sr) { hotel ->
+                                if (hotel.type == "HOTEL") {
+                                    HotelItem(navController, hotel = hotel)
+                                }
                             }
                         }
                     }

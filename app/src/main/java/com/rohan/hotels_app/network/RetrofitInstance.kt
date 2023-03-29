@@ -1,12 +1,11 @@
-package com.rohan.hotels_app.network
-
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import com.google.gson.Gson
 import com.rohan.hotels_app.data.Hotel
-import kotlinx.coroutines.launch
+import com.rohan.hotels_app.data.HotelSummaryD.HotelSummary
+import com.rohan.hotels_app.network.HotelApi
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -33,6 +32,15 @@ object RetrofitInstance {
 
     suspend fun searchHotels(city: String): Hotel {
         return hotelApi.searchHotels(query = city)
+    }
+
+
+    suspend fun getHotelSummary(hotelId: String): HotelSummary {
+        val mediaType = "application/json".toMediaTypeOrNull()
+        val body = "{\"propertyId\": \"$hotelId\"}".toRequestBody(mediaType)
+        val hotelSummary = hotelApi.getHotelSummary(body)
+        Log.d("Hotel TagLine " , hotelSummary.data.propertyInfo.summary.tagline)
+        return hotelSummary
     }
 
 }
