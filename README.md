@@ -13,7 +13,7 @@ The app uses the following libraries:
 
 1) Retrofit and OkHttp3 for REST API calls (GET and POST)
 2) Jetpack Compose for UI
-3) Navigation Compose for navigating between screens
+3) Navigation with Compose for navigating between screens
 
 <h2> Screenshots </h2>
 
