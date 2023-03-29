@@ -11,7 +11,6 @@ import com.rohan.hotels_app.composables.CitySearchBar
 import com.rohan.hotels_app.composables.HotelDetailsScreen
 import com.rohan.hotels_app.composables.HotelsListScreen
 
-
 @Composable
 fun HotelNavigation() {
     val navController = rememberNavController()
@@ -19,7 +18,7 @@ fun HotelNavigation() {
     NavHost(navController = navController, startDestination = "schoolList") {
         composable("schoolList") {
             //SchoolList(navController = navController)
-            CitySearchBar(onSearch = {city ->
+            CitySearchBar(onSearch = { city ->
                 enteredCity = city
                 Log.d("City", city)
                 navController.navigate("hotelList/${enteredCity}")
@@ -31,7 +30,7 @@ fun HotelNavigation() {
             arguments = listOf(navArgument("cityName") { type = NavType.StringType })
         ) { backStackEntry ->
             val cityName = backStackEntry.arguments?.getString("cityName") ?: ""
-            HotelsListScreen(navController,cityName)
+            HotelsListScreen(navController, cityName)
         }
 
         composable(
@@ -39,7 +38,7 @@ fun HotelNavigation() {
             arguments = listOf(navArgument("hotelName") { type = NavType.StringType })
         ) { backStackEntry ->
             val hotelName = backStackEntry.arguments?.getString("hotelName") ?: ""
-            HotelDetailsScreen(navController,hotelName)
+            HotelDetailsScreen(navController, hotelName)
         }
     }
 }

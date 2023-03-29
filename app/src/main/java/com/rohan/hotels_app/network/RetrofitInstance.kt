@@ -1,5 +1,4 @@
 import android.util.Log
-import com.google.gson.Gson
 import com.rohan.hotels_app.data.Hotel
 import com.rohan.hotels_app.data.HotelSummaryD.HotelSummary
 import com.rohan.hotels_app.network.HotelApi
@@ -39,7 +38,7 @@ object RetrofitInstance {
         val mediaType = "application/json".toMediaTypeOrNull()
         val body = "{\"propertyId\": \"$hotelId\"}".toRequestBody(mediaType)
         val hotelSummary = hotelApi.getHotelSummary(body)
-        Log.d("Hotel TagLine " , hotelSummary.data.propertyInfo.summary.tagline)
+        Log.d("Hotel TagLine ", hotelSummary.data.propertyInfo.summary.tagline)
         return hotelSummary
     }
 

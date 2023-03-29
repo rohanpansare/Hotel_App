@@ -22,14 +22,16 @@ import com.rohan.hotels_app.data.Hotel
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HotelsListScreen(navController: NavHostController, enteredCity: String) {
-    var hotels by remember { mutableStateOf(
-        Hotel(
-            q = "",
-            rc = "",
-            rid = "",
-            sr = emptyList()
+    var hotels by remember {
+        mutableStateOf(
+            Hotel(
+                q = "",
+                rc = "",
+                rid = "",
+                sr = emptyList()
+            )
         )
-    ) }
+    }
     val context = LocalContext.current
     var isLoading by remember { mutableStateOf(true) }
 
@@ -58,11 +60,15 @@ fun HotelsListScreen(navController: NavHostController, enteredCity: String) {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 } else {
                     if (hotels.sr.isEmpty()) {
-                        Toast.makeText(context, "Hotels for $enteredCity not found", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            context,
+                            "Hotels for $enteredCity not found",
+                            Toast.LENGTH_LONG
+                        ).show()
                     } else {
-                    LazyColumn(
-                        contentPadding = PaddingValues(vertical = 8.dp)
-                    ) {
+                        LazyColumn(
+                            contentPadding = PaddingValues(vertical = 8.dp)
+                        ) {
                             items(hotels.sr) { hotel ->
                                 if (hotel.type == "HOTEL") {
                                     HotelItem(navController, hotel = hotel)
