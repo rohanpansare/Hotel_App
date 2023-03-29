@@ -1,18 +1,21 @@
-# Hotel_App
+<h1> Hotels_App </h1>
 
-This is a Android app that retrieves hotels details data from a REST API (https://hotels4.p.rapidapi.com/) 
+This is a Android app that retrieves hotels list and summary data from a REST API based on searched city (https://hotels4.p.rapidapi.com/) 
 using Retrofit and displays it using Jetpack Compose. 
 
 The app consists of three screens: 
-1) Search city screen,
+1) Search city screen
 2) A list of hotels for entered city 
 3) Detailed information of a selected hotel.
 
-Libraries
+<h2> Libraries </h2>
 The app uses the following libraries:
-Retrofit and OkHttp3 for REST API calls (GET and POST)
-Jetpack Compose for UI
-Navigation Compose for navigating between screens
+
+1) Retrofit and OkHttp3 for REST API calls (GET and POST)
+2) Jetpack Compose for UI
+3) Navigation Compose for navigating between screens
+
+<h2> Screenshots </h2>
 
 ![Alt text](Screenshots/Screenshot_1.png)
 
